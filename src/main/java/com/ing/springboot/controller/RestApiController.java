@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.ing.springboot.model.User;
-import com.ing.springboot.service.UserService;
+import com.ing.springboot.service.CustomerService;
 import com.ing.springboot.util.CustomErrorType;
 
 @RestController
@@ -26,7 +26,7 @@ public class RestApiController {
 	public static final Logger logger = LoggerFactory.getLogger(RestApiController.class);
 
 	@Autowired
-	UserService userService; //Service which will do all data retrieval/manipulation work
+	CustomerService userService; //Service which will do all data retrieval/manipulation work
 
 	// -------------------Retrieve All Users---------------------------------------------
 

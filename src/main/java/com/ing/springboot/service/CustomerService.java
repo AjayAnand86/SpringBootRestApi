@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.ing.springboot.model.User;
 
-public interface UserService {
+public interface CustomerService {
 	
 	User findById(long id);
 	

@@ -12,7 +12,7 @@ import com.ing.springboot.model.User;
 
 
 @Service("userService")
-public class UserServiceImpl implements UserService{
+public class CustomerServiceImpl implements CustomerService{
 	
 	private static final AtomicLong counter = new AtomicLong();
 	
@@ -80,5 +80,6 @@ public class UserServiceImpl implements UserService{
 		users.add(new User(counter.incrementAndGet(),"Silvia",50, 40000));
 		return users;
 	}
+	
 
 }
