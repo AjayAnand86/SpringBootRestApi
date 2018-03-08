@@ -32,6 +32,18 @@
     		<groupId>com.fasterxml.jackson.dataformat</groupId>
     		<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <version>1.2.3.RELEASE</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>
+    <scope>test</scope>
+</dependency>		
 	</dependencies>
 	<build>
 		<plugins>
@@ -43,4 +55,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
