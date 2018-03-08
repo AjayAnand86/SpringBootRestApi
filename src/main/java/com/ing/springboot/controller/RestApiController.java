@@ -44,7 +44,7 @@ public class RestApiController {
 	}
 	
 	
-	@RequestMapping(value = "/getCustomerDetails/{custId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/customerDetails/{custId}", method = RequestMethod.GET)
 	public ResponseEntity<CustomerDetails> getCustomerDetails(@PathVariable("custId") long custId) throws ValidationException {
 		CustomerDetails CustomerDetails  = accountService.getCustomerDetails(custId);
 		return new ResponseEntity<CustomerDetails>(CustomerDetails, HttpStatus.OK);
