@@ -5,7 +5,7 @@
 	<groupId>com.ing.springboot</groupId>
 	<artifactId>SpringBootRestApiExample</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>SpringBootRestApiExample</name>
 
