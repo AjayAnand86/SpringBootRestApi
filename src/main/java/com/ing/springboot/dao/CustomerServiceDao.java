@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.ing.springboot.model.CustomerDetails;
+import com.ing.springboot.util.ValidationException;
 
 public class CustomerServiceDao {
 
@@ -42,8 +43,10 @@ public class CustomerServiceDao {
 		PreparedStatement preparedStatement = dbConnection.prepareStatement(selectSQL);
 		preparedStatement.setString(1, custId);
 		ResultSet rs = preparedStatement.executeQuery();
-		customerDetails = new CustomerDetails();
+		
+		
 		while (rs.next()) {
+			customerDetails = new CustomerDetails();
 			customerDetails.setAccountNumber(rs.getInt("ACCOUNT_NUMBER"));
 			customerDetails.setCustomerID(rs.getString("CUSTOMER_ID"));
 			customerDetails.setCustomerName(rs.getString("CUSTOMER_NAME"));

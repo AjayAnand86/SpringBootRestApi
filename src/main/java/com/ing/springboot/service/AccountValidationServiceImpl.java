@@ -39,8 +39,17 @@ public class AccountValidationServiceImpl implements AccountValidationService {
 
 	@Override
 	public CustomerDetails getCustomerDetails(final Long custId) throws ValidationException {
-		
-		return new CustomerServiceDao().getCustomerByCustId(String.valueOf(custId));
+		CustomerDetails customerDetails = null;
+		if(null == custId){
+			throw new ValidationException ("Enter custId");
+		}else{
+			customerDetails  = new CustomerServiceDao().getCustomerByCustId(String.valueOf(custId));
+		}
+				
+		if(null == customerDetails){
+			throw new ValidationException ("No records found");
+		}
+		return customerDetails;
 	}
 	
 }
