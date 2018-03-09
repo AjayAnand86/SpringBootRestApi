@@ -14,9 +14,7 @@ public class ValidationExceptionTest {
 	public void testValidateAccountNumberTestWithNull() throws ValidationException {
 		try{
 			accountValidationServiceImpl.validateAccountNumber(null);
-			
-		}catch(ValidationException e)
-		{
+		} catch(ValidationException e){
 			assertTrue(true);
 		}
 	}

@@ -7,8 +7,17 @@ public class CustomerDetails {
 	private String customerRole;
 	private String customerStatus;
 	private Double balance;
+	private String currencyCode;
 
 	
+	public String getCurrencyCode() {
+		return currencyCode;
+	}
+
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
+	}
+
 	public String getCustomerID() {
 		return CustomerID;
 	}

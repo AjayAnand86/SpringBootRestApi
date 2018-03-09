@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication(scanBasePackages={"com.ing.springboot"})
-@EnableAutoConfiguration// same as @Configuration @EnableAutoConfiguration @ComponentScan combined
+@EnableAutoConfiguration
 public class SpringBootRestApiApp {
 
 	public static void main(String[] args) {
