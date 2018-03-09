@@ -9,19 +9,38 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
+
 import com.ing.springboot.model.CustomerAccountDetails;
 import com.ing.springboot.model.CustomerDetails;
 import com.ing.springboot.model.TransactionDetails;
 import com.ing.springboot.model.CustomerTransactionDetails;
-import com.ing.springboot.util.ValidationException;
 
+@Repository
 public class CustomerServiceDao {
-
+	
+	@Value("${repo.insert.customer.details}")
+	private static String INSERT_CUSTOMER_DETAILS;
+	
+	@Value("${repo.select.customer.details}")
+	private static String SELECT_CUSTOMER_DETAILS;
+	
+	@Value("${repo.select.customer.balance.details}")
+	private static String SELECT_CUSTOMER_BALANCE_BY_ID;
+	
+	@Value("${repo.insert.customer.transaction.details}")
+	private static String INSERT_TRANSACTION;
+	
+	@Value("${repo.update.customer.transaction.details}")
+	private static String UPDATE_TRANSACTION;
+	
+	@Value("${repo.select.customer.account.details}")
+	private static String SELECT_CUSTOMER_ACCOUNT_DETAILS;
+	
 	public void insertCustomer (CustomerDetails CustomerDetails){
 
-		String insertTableSQL = "INSERT INTO CUSTOMER_DETAILS"
-				+ "(ACCOUNT_NUMBER, CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_ROLE, CUSTOMER_STATUS,AVAILABLE_BALANCE,CURR_CDE) VALUES"
-				+ "(?,?,?,?,?,?.?)";
+		String insertTableSQL = INSERT_CUSTOMER_DETAILS;
 		Connection dbConnection =  ConnectDB.getConection();
 		PreparedStatement preparedStatement;
 		try {
@@ -41,7 +60,7 @@ public class CustomerServiceDao {
 	
 	public CustomerDetails getCustomerByCustId (
 			String custId){
-	String selectSQL = "SELECT ACCOUNT_NUMBER, CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_ROLE, CUSTOMER_STATUS,AVAILABLE_BALANCE,CURR_CDE FROM CUSTOMER_DETAILS WHERE CUSTOMER_ID = ?";
+	String selectSQL = SELECT_CUSTOMER_DETAILS;
 	Connection dbConnection =  ConnectDB.getConection();
 	CustomerDetails customerDetails = null;
 	
@@ -71,7 +90,7 @@ public class CustomerServiceDao {
 	}
 
 	public CustomerDetails getBalanceByCustId (String CustId){
-		String selectSQL = "SELECT ACCOUNT_NUMBER, CUSTOMER_ID,AVAILABLE_BALANCE FROM CUSTOMER_DETAILS WHERE CUSTOMER_ID = ?";
+		String selectSQL = SELECT_CUSTOMER_BALANCE_BY_ID;
 		Connection dbConnection =  ConnectDB.getConection();
 		CustomerDetails accountDetails = null;
 
@@ -94,9 +113,7 @@ public class CustomerServiceDao {
 
 	public void insertTransaction (CustomerAccountDetails accountDetails){
 
-		String insertSQL = "INSERT INTO CUSTOMER_ACCOUNT_DETAILS"
-				+ "(CUSTOMER_ID, ACCOUNT_NUMBER, BALANCE, TRANSACTION_MODE, TRANSACTION_DATE) VALUES"
-				+ "(?,?,?,?,?)";
+		String insertSQL = INSERT_TRANSACTION;
 		Connection dbConnection =  ConnectDB.getConection();
 		PreparedStatement preparedStatement;
 		try {
@@ -113,7 +130,7 @@ public class CustomerServiceDao {
 	}
 
 	public int UpdateCustomerBalance (String CustId, Double Balance){
-		String updateSQL = "UPDATE CUSTOMER_DETAILS SET AVAILABLE_BALANCE = ? WHERE CUSTOMER_ID = ?";
+		String updateSQL = UPDATE_TRANSACTION;
 		Connection dbConnection =  ConnectDB.getConection();
 		int count = 0;
 
@@ -130,13 +147,12 @@ public class CustomerServiceDao {
 	}
 	
 	public CustomerTransactionDetails getCustomerTransactionDetails(String custId, Date startDate, Date endDate) {
-		String selectSQL = "SELECT * FROM CUSTOMER_ACCOUNT_DETAILS WHERE CUSTOMER_ID = ? AND TRANSACTION_DATE >=? AND TRANSACTION_DATE <=?";
+		String selectSQL = SELECT_CUSTOMER_ACCOUNT_DETAILS;
 
 		Connection dbConnection = ConnectDB.getConection();
 
 		CustomerTransactionDetails customerTransactionDetails = new CustomerTransactionDetails();
 
-		CustomerDetails customerDetails = getCustomerByCustId(custId);
 		customerTransactionDetails.setCustomerId(custId);
 
 		List<TransactionDetails> transactionDetailsList = new ArrayList<TransactionDetails>();
