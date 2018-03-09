@@ -13,8 +13,8 @@ public class CustomerServiceDao {
 	public void insertCustomer (CustomerDetails CustomerDetails){
 		
 		String insertTableSQL = "INSERT INTO CUSTOMER_DETAILS"
-				+ "(ACCOUNT_NUMBER, CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_ROLE, CUSTOMER_STATUS,AVAILABLE_BALANCE) VALUES"
-				+ "(?,?,?,?,?,?)";
+				+ "(ACCOUNT_NUMBER, CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_ROLE, CUSTOMER_STATUS,AVAILABLE_BALANCE,CURR_CDE) VALUES"
+				+ "(?,?,?,?,?,?.?)";
 		Connection dbConnection =  ConnectDB.getConection();
 		PreparedStatement preparedStatement;
 		try {
@@ -25,6 +25,7 @@ public class CustomerServiceDao {
 			preparedStatement.setString(4, CustomerDetails.getCustomerRole());
 			preparedStatement.setString(5, CustomerDetails.getCustomerStatus());
 			preparedStatement.setDouble(6, CustomerDetails.getBalance());
+			preparedStatement.setString(7, CustomerDetails.getCurrencyCode());
 			preparedStatement .executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -35,7 +36,7 @@ public class CustomerServiceDao {
 	
 	public CustomerDetails getCustomerByCustId (
 			String custId){
-	String selectSQL = "SELECT ACCOUNT_NUMBER, CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_ROLE, CUSTOMER_STATUS,AVAILABLE_BALANCE FROM CUSTOMER_DETAILS WHERE CUSTOMER_ID = ?";
+	String selectSQL = "SELECT ACCOUNT_NUMBER, CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_ROLE, CUSTOMER_STATUS,AVAILABLE_BALANCE,CURR_CDE FROM CUSTOMER_DETAILS WHERE CUSTOMER_ID = ?";
 	Connection dbConnection =  ConnectDB.getConection();
 	CustomerDetails customerDetails = null;
 	
@@ -53,8 +54,10 @@ public class CustomerServiceDao {
 			customerDetails.setCustomerRole(rs.getString("CUSTOMER_ROLE"));
 			customerDetails.setCustomerStatus(rs.getString("CUSTOMER_STATUS"));
 			customerDetails.setBalance(rs.getDouble("AVAILABLE_BALANCE"));
+			customerDetails.setCurrencyCode(rs.getString("CURR_CDE"));
 			
 		}
+		
 	}catch (SQLException se){
 			se.printStackTrace();
 		}

@@ -1,11 +1,23 @@
 package com.ing.springboot.model;
 
-public class CustomerAccountDetails {
+import java.sql.Date;
 
+public class CustomerAccountDetails {
+	
 	private Integer customerID;
 	private String accountNumber;
 	private Double balance;
 	private String transactionMode;
+	private  Date transactionDate;
+	
+
+	public Date getTransactionDate() {
+		return transactionDate;
+	}
+
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
+	}
 
 	public Integer getCustomerID() {
 		return customerID;
