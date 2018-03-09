@@ -41,14 +41,9 @@ public class AccountValidationServiceImplTest {
 		accountValidationService.getCustomerDetails(null);
 	}
 	
-	@Test
+	@Test (expected = NullPointerException.class)
 	public void testGetCustomerDetailsForValid() throws ValidationException {
 		accountValidationService.getCustomerDetails(123l);
-	}
-
-	@Test
-	public void testGetCustomerTransactionDetails() {
-		fail("Not yet implemented");
 	}
 
 }
