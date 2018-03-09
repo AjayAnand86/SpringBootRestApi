@@ -2,7 +2,7 @@ package com.ing.springboot.util;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class CustomErrorType {
 
     private String errorMessage;

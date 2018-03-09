@@ -88,7 +88,7 @@ public class AccountValidationServiceImpl implements AccountValidationService {
 		
 		CustomerTransactionDetails custTrasactionDetails = null;
 		try{
-			customerServiceDao.getCustomerTransactionDetails(custId.toString(), startDt, endDt);
+			custTrasactionDetails = customerServiceDao.getCustomerTransactionDetails(custId.toString(), startDt, endDt);
 		}catch(Exception e)
 		{
 			e.printStackTrace();
