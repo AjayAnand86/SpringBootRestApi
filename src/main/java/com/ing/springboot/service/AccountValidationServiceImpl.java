@@ -1,15 +1,24 @@
 package com.ing.springboot.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.stereotype.Service;
 
 import com.ing.springboot.dao.CustomerServiceDao;
 import com.ing.springboot.model.CustomerDetails;
+import com.ing.springboot.model.CustomerTransactionDetails;
 import com.ing.springboot.util.ValidationException;
 
 @Service
 public class AccountValidationServiceImpl implements AccountValidationService {
 
-	//@Autowired
+	CustomerServiceDao customerServiceDao = null;
+	
+	public AccountValidationServiceImpl() {
+		customerServiceDao  = new CustomerServiceDao();
+	}
 	
 	
 	@Override
@@ -52,4 +61,39 @@ public class AccountValidationServiceImpl implements AccountValidationService {
 		return customerDetails;
 	}
 	
+	
+	@Override
+	public CustomerTransactionDetails getCustomerTransactionDetails(Long custId, String startDate, String endDate) throws ValidationException {
+
+		if(custId == null || startDate == null || endDate == null )
+		{
+			throw new ValidationException("Missing Paramenteres: please enter customer ID, start date, end date");
+		}
+		
+		SimpleDateFormat sdfmt2= new SimpleDateFormat("dd-MM-yyyy");
+		Date startDt = null, endDt = null;
+		try {
+			startDt = sdfmt2.parse(startDate);
+			endDt = sdfmt2.parse(endDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new ValidationException("Invalid Date format: enter dd-MM-yyyy");
+		}
+		
+		if(startDt.compareTo(endDt)>0)
+		{
+			throw new ValidationException("Invalid Date format: enter dd-MM-yyyy");
+		}
+		
+		CustomerTransactionDetails custTrasactionDetails = null;
+		try{
+			customerServiceDao.getCustomerTransactionDetails(custId.toString(), startDt, endDt);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return custTrasactionDetails;
+	}
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ing.springboot.model.CustomerDetails;
+import com.ing.springboot.model.CustomerTransactionDetails;
 import com.ing.springboot.service.AccountValidationService;
 import com.ing.springboot.util.ValidationException;
 
@@ -50,6 +51,16 @@ public class RestApiController {
 		return new ResponseEntity<CustomerDetails>(CustomerDetails, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/getBalanceReport/{custId}/{startDate}/{endDate}", method = RequestMethod.GET)
+	public ResponseEntity<CustomerTransactionDetails> getCustomerDetails(@PathVariable("custId") long custId, @PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate) throws ValidationException {
+		CustomerTransactionDetails customerTransactionDetails  = accountService.getCustomerTransactionDetails(custId, startDate, endDate);
+		
+		HttpStatus status = HttpStatus.OK;
+		if(customerTransactionDetails == null) {
+			status =HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<CustomerTransactionDetails>(customerTransactionDetails, status);
+	}
 		
 	
 }

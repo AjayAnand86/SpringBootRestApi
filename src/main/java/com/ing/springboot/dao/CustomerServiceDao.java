@@ -4,9 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import com.ing.springboot.model.CustomerAccountDetails;
 import com.ing.springboot.model.CustomerDetails;
+import com.ing.springboot.model.TransactionDetails;
+import com.ing.springboot.model.CustomerTransactionDetails;
 import com.ing.springboot.util.ValidationException;
 
 public class CustomerServiceDao {
@@ -121,6 +126,47 @@ public class CustomerServiceDao {
 			se.printStackTrace();
 		}
 		return count;
+	}
+	
+	public CustomerTransactionDetails getCustomerTransactionDetails(String custId, Date startDate, Date endDate) {
+		String selectSQL = "SELECT * FROM CUSTOMER_ACCOUNT_DETAILS WHERE CUSTOMER_ID = ? AND TRANSACTION_DATE >=? AND TRANSACTION_DATE <=?";
+
+		Connection dbConnection = ConnectDB.getConection();
+
+		CustomerTransactionDetails customerTransactionDetails = new CustomerTransactionDetails();
+
+		CustomerDetails customerDetails = getCustomerByCustId(custId);
+		customerTransactionDetails.setCustomerId(custId);
+
+		List<TransactionDetails> transactionDetailsList = new ArrayList<TransactionDetails>();
+
+		try {
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, custId);
+			preparedStatement.setDate(2, (java.sql.Date) startDate);
+			preparedStatement.setDate(3, (java.sql.Date) endDate);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				TransactionDetails transactionDetails = new TransactionDetails();
+				transactionDetails.setCustomerId(custId);
+				transactionDetails.setTransactionAmount(rs.getDouble("BALANCE"));
+				transactionDetails.setTransactionType(rs.getString("TRANSACTION_MODE"));
+				transactionDetailsList.add(transactionDetails);
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			try {
+				dbConnection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return customerTransactionDetails;
 	}
 }
 
