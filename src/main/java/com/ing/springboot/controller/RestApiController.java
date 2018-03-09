@@ -64,7 +64,7 @@ public class RestApiController {
 		return new ResponseEntity<CustomerTransactionDetails>(customerTransactionDetails, status);
 	}
 		
-	@RequestMapping(value = "/depositAmount/{custId}/{amount}/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/depositAmount/{custId}/{amount}", method = RequestMethod.PUT)
 	public ResponseEntity<String> addMoney(@PathVariable("custId") String custId, @PathVariable("amount") Double amount) throws ValidationException {
 		String depositStatus  = txnService.depositeMoney(custId, amount);
 		
@@ -75,7 +75,7 @@ public class RestApiController {
 		return new ResponseEntity<String>(depositStatus, status);
 	}
 	
-	@RequestMapping(value = "/withdrawAmount/{custId}/{amount}/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/withdrawAmount/{custId}/{amount}", method = RequestMethod.PUT)
 	public ResponseEntity<String> subtractMoney(@PathVariable("custId") String custId, @PathVariable("amount") Double amount) throws ValidationException {
 		String depositStatus  = txnService.withdrawMoney(custId, amount);
 		
