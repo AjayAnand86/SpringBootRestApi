@@ -34,6 +34,7 @@ public class DepositMoneyServiceImpl implements DepositMoneyService{
 				if(null!=customerDetails.getBalance()){
 					Double currentBalance=customerDetails.getBalance()+amount;
 					rowUpdated=customerServiceDao.UpdateCustomerBalance(String.valueOf(custId),customerDetails.getBalance());
+					
 				}
 				
 			}else{
