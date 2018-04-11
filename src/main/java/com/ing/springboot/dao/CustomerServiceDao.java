@@ -4,14 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.ing.springboot.model.CustomerAccountDetails;
 import com.ing.springboot.model.CustomerDetails;
 import com.ing.springboot.model.CustomerTransactionDetails;
 import com.ing.springboot.model.TransactionDetails;
@@ -92,26 +90,6 @@ public class CustomerServiceDao {
 		}
 
 		return accountDetails;
-	}
-
-	public void insertTransaction (CustomerAccountDetails accountDetails){
-
-		String insertSQL = "INSERT INTO CUSTOMER_ACCOUNT_DETAILS"
-				+ "(CUSTOMER_ID, ACCOUNT_NUMBER, BALANCE, TRANSACTION_MODE, TRANSACTION_DATE) VALUES"
-				+ "(?,?,?,?,?)";
-		Connection dbConnection =  ConnectDB.getConection();
-		PreparedStatement preparedStatement;
-		try {
-			preparedStatement = dbConnection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, accountDetails.getCustomerID());
-			preparedStatement.setInt(2, accountDetails.getAccountNumber());
-			preparedStatement.setDouble(3, accountDetails.getBalance());
-			preparedStatement.setString(4, accountDetails.getTransactionMode());
-			preparedStatement.setDate(5, java.sql.Date.valueOf(LocalDate.now()));
-			preparedStatement .executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public int UpdateCustomerBalance (String CustId, Double Balance){

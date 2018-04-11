@@ -14,23 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ing.springboot.model.CustomerDetails;
 import com.ing.springboot.model.CustomerTransactionDetails;
 import com.ing.springboot.service.AccountValidationService;
-import com.ing.springboot.service.TransactionService;
 import com.ing.springboot.util.ValidationException;
 
 
 
 @RestController
-@RequestMapping("/api")
-public class RestApiController {
+@RequestMapping("/api/savingsaccount")
+public class SavingsAccountController {
 
-	public static final Logger logger = LoggerFactory.getLogger(RestApiController.class);
+	public static final Logger logger = LoggerFactory.getLogger(SavingsAccountController.class);
 
 	@Autowired
 	AccountValidationService accountService; 
 	
-	@Autowired
-	TransactionService txnService;
-
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public ResponseEntity<String> validateAccountNumber() throws ValidationException {
 	
@@ -64,25 +60,4 @@ public class RestApiController {
 		return new ResponseEntity<CustomerTransactionDetails>(customerTransactionDetails, status);
 	}
 		
-	@RequestMapping(value = "/depositAmount/{custId}/{amount}", method = RequestMethod.PUT)
-	public ResponseEntity<String> addMoney(@PathVariable("custId") String custId, @PathVariable("amount") Double amount) throws ValidationException {
-		String depositStatus  = txnService.depositeMoney(custId, amount);
-		
-		HttpStatus status = HttpStatus.OK;
-		if(depositStatus == null) {
-			status =HttpStatus.INTERNAL_SERVER_ERROR;
-		}
-		return new ResponseEntity<String>(depositStatus, status);
-	}
-	
-	@RequestMapping(value = "/withdrawAmount/{custId}/{amount}", method = RequestMethod.PUT)
-	public ResponseEntity<String> subtractMoney(@PathVariable("custId") String custId, @PathVariable("amount") Double amount) throws ValidationException {
-		String depositStatus  = txnService.withdrawMoney(custId, amount);
-		
-		HttpStatus status = HttpStatus.OK;
-		if(depositStatus == null) {
-			status =HttpStatus.INTERNAL_SERVER_ERROR;
-		}
-		return new ResponseEntity<String>(depositStatus, status);
-	}
 }

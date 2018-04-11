@@ -1,8 +1,5 @@
 package com.ing.springboot.util;
 
-import org.springframework.stereotype.Component;
-
-
 public class CustomErrorType {
 
     private String errorMessage;

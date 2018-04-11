@@ -1,12 +1,9 @@
 package com.ing.springboot.test;
  
-import java.net.URI;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.web.client.RestTemplate;
-
-import com.ing.springboot.model.User;
  
 
 public class SpringBootRestTestClient {
@@ -34,26 +31,26 @@ public class SpringBootRestTestClient {
     private static void getUser(){
         System.out.println("Testing getUser API----------");
         RestTemplate restTemplate = new RestTemplate();
-        User user = restTemplate.getForObject(REST_SERVICE_URI+"/user/1", User.class);
-        System.out.println(user);
+       // User user = restTemplate.getForObject(REST_SERVICE_URI+"/user/1", User.class);
+       // System.out.println(user);
     }
      
     /* POST */
     private static void createUser() {
         System.out.println("Testing create User API----------");
         RestTemplate restTemplate = new RestTemplate();
-        User user = new User(0,"Sarah",51,134);
-        URI uri = restTemplate.postForLocation(REST_SERVICE_URI+"/user/", user, User.class);
-        System.out.println("Location : "+uri.toASCIIString());
+       /// User user = new User(0,"Sarah",51,134);
+       // URI uri = restTemplate.postForLocation(REST_SERVICE_URI+"/user/", user, User.class);
+        //System.out.println("Location : "+uri.toASCIIString());
     }
  
     /* PUT */
     private static void updateUser() {
         System.out.println("Testing update User API----------");
         RestTemplate restTemplate = new RestTemplate();
-        User user  = new User(1,"Tomy",33, 70000);
-        restTemplate.put(REST_SERVICE_URI+"/user/1", user);
-        System.out.println(user);
+        //User user  = new User(1,"Tomy",33, 70000);
+        //restTemplate.put(REST_SERVICE_URI+"/user/1", user);
+        //System.out.println(user);
     }
  
     /* DELETE */
