@@ -23,6 +23,26 @@
 	</properties>
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.prowidesoftware/wife -->
+		<dependency>
+			<groupId>com.prowidesoftware</groupId>
+			<artifactId>wife</artifactId>
+			<version>6.4.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.prowidesoftware/pw-swift-core -->
+		<dependency>
+			<groupId>com.prowidesoftware</groupId>
+			<artifactId>pw-swift-core</artifactId>
+			<version>SRU2013-7.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.servicemix.bundles</groupId>
+			<artifactId>org.apache.servicemix.bundles.jaxp-ri</artifactId>
+			<version>1.4.2_3</version>
+		</dependency>
+		
 		<!-- Add typical dependencies for a web application -->
 		<!-- Adds Tomcat and Spring MVC, along others -->
 		<dependency>
@@ -39,22 +59,22 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-    		<groupId>com.fasterxml.jackson.dataformat</groupId>
-    		<artifactId>jackson-dataformat-xml</artifactId>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-test</artifactId>
-    <version>1.2.3.RELEASE</version>
-    <scope>test</scope>
-</dependency>
-<dependency>
-    <groupId>org.mockito</groupId>
-    <artifactId>mockito-core</artifactId>
-    <scope>test</scope>
-</dependency>	
-	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>1.2.3.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
