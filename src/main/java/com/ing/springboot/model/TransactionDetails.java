@@ -2,29 +2,38 @@ package com.ing.springboot.model;
 
 public class TransactionDetails {
 
-	private double transactionAmount;
+	private String transactionAmount;
 	private String transactionType;
-	private String customerId;
-	
-	public double getTransactionAmount() {
+	private String id;
+
+	public String getTransactionAmount() {
 		return transactionAmount;
 	}
-	public void setTransactionAmount(double transactionAmount) {
+
+	public void setTransactionAmount(String transactionAmount) {
 		this.transactionAmount = transactionAmount;
 	}
+
 	public String getTransactionType() {
 		return transactionType;
 	}
+
 	public void setTransactionType(String transactionType) {
 		this.transactionType = transactionType;
 	}
-	public String getCustomerId() {
-		return customerId;
+
+	public String getId() {
+		return id;
 	}
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "TransactionDetails [transactionAmount=" + transactionAmount + ", transactionType=" + transactionType
+				+ ", id=" + id + "]";
+	}
+
 }

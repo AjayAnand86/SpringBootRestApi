@@ -135,8 +135,8 @@ public class CustomerServiceDao {
 
 			while (rs.next()) {
 				TransactionDetails transactionDetails = new TransactionDetails();
-				transactionDetails.setCustomerId(custId);
-				transactionDetails.setTransactionAmount(rs.getDouble("BALANCE"));
+				transactionDetails.setId(custId);
+				transactionDetails.setTransactionAmount(String.valueOf(rs.getDouble("BALANCE")));
 				transactionDetails.setTransactionType(rs.getString("TRANSACTION_MODE"));
 				transactionDetailsList.add(transactionDetails);
 				customerTransactionDetails.setTransactionDetailsList(transactionDetailsList);
