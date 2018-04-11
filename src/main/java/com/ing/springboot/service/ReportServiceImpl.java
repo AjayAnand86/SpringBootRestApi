@@ -3,6 +3,11 @@ package com.ing.springboot.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+import com.ing.springboot.model.BankAccountDetail;
+import com.ing.springboot.util.ReportUtils;
+
 @Service("reportService")
 public class ReportServiceImpl implements ReportService
 {

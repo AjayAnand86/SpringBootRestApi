@@ -1,6 +1,8 @@
 package com.ing.springboot.util;
 import java.util.List;
 
+import com.ing.springboot.model.BankAccountDetail;
+
 public class ReportUtils
 {
 
