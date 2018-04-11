@@ -3,6 +3,9 @@ package com.ing.springboot.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MT940ParsedObject {
 	private String sender;
 	private String receiver;
