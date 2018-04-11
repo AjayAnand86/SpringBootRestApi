@@ -81,7 +81,7 @@ public static void main(String[] args) throws IOException {
 		Field62F field62f = mt.getField62F();
 		String closingAmount = field62f.getAmount();
 		String closingCurrency = field62f.getCurrency();
-		System.out.println("Opening Balance : " + closingAmount);
+		System.out.println("Closing Balance : " + closingAmount);
 		System.out.println("Closing Currency : " + closingCurrency);
 		
 		for(Field61 f61 : field61){
