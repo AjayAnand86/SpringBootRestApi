@@ -12,6 +12,7 @@ public class MT940ParsedObject {
 	private String openingAmount;
 	private String closingAmount;
 	private String currency;
+	private String accountNumber;
 	private List<TransactionDetails> transactionDetails;
 
 	public MT940ParsedObject() {
@@ -65,12 +66,24 @@ public class MT940ParsedObject {
 	public void setTransactionDetails(List<TransactionDetails> transactionDetails) {
 		this.transactionDetails = transactionDetails;
 	}
+	
+	
+	
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
 
 	@Override
 	public String toString() {
 		return "MT940ParsedObject [sender=" + sender + ", receiver=" + receiver + ", openingAmount=" + openingAmount
-				+ ", closingAmount=" + closingAmount + ", currency=" + currency + ", transactionDetails="
-				+ transactionDetails + "]";
+				+ ", closingAmount=" + closingAmount + ", currency=" + currency + ", accountNumber=" + accountNumber
+				+ ", transactionDetails=" + transactionDetails + "]";
 	}
+
+	
 
 }

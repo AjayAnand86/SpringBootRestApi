@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +49,9 @@ public class ReportServiceImpl implements ReportService
 			}
 			
 			BankAccountDetail b = new BankAccountDetail();
-			//b.setAccountNumber(mt940Object.);
+			b.setAccountNumber(mt940Object.getAccountNumber());
 			b.setBankName(bankid);
-			if(mt940Object != null && !StringUtils.isBlank(mt940Object.getClosingAmount()))
+			if(mt940Object != null && mt940Object.getClosingAmount() != null)
 				b.setClosingBalance(Double.parseDouble(mt940Object.getClosingAmount().replace(",", ".")));
 			bankAccountDetailList.add(b);
 		}

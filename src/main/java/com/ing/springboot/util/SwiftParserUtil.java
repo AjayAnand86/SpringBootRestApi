@@ -15,6 +15,7 @@ import com.ing.springboot.model.TransactionDetails;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.field.Field20;
+import com.prowidesoftware.swift.model.field.Field25;
 import com.prowidesoftware.swift.model.field.Field60F;
 import com.prowidesoftware.swift.model.field.Field61;
 import com.prowidesoftware.swift.model.field.Field62F;
@@ -78,7 +79,9 @@ public MT940ParsedObject createMT940Object(String mtString) throws IOException {
 	mt940ParsedObject.setOpeningAmount(openingAmount);
 	System.out.println("Currency : " + currency);
 	mt940ParsedObject.setCurrency(currency);
-	
+	Field25 field25 = mt.getField25();
+	System.out.println(mt.getField25());
+	mt940ParsedObject.setAccountNumber(field25.getAccount());
 	Field62F field62f = mt.getField62F();
 	String closingAmount = field62f.getAmount();
 	String closingCurrency = field62f.getCurrency();
