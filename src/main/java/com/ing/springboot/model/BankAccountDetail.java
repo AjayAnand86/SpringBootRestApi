@@ -5,8 +5,8 @@ public class BankAccountDetail
 
 	private String accountNumber;
 	private String bankName;
-	private long closingBalance;
-	private float percentShare;
+	private double closingBalance;
+	private double percentShare;
 	
 	public String getAccountNumber() {
 		return accountNumber;
@@ -20,16 +20,16 @@ public class BankAccountDetail
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
 	}
-	public long getClosingBalance() {
+	public double getClosingBalance() {
 		return closingBalance;
 	}
-	public void setClosingBalance(long closingBalance) {
+	public void setClosingBalance(double closingBalance) {
 		this.closingBalance = closingBalance;
 	}
-	public float getPercentShare() {
+	public double getPercentShare() {
 		return percentShare;
 	}
-	public void setPercentShare(float percentShare) {
+	public void setPercentShare(double percentShare) {
 		this.percentShare = percentShare;
 	}
 }

@@ -1,4 +1,5 @@
 package com.ing.springboot.util;
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.ing.springboot.model.BankAccountDetail;
@@ -8,11 +9,11 @@ public class ReportUtils
 
 	public static List<BankAccountDetail> calculatePercentShare(List<BankAccountDetail> bankAccountDetailList)
 	{
-		long totalBalanceInAllAccounts = bankAccountDetailList.stream().mapToLong(o -> o.getClosingBalance()).sum();
+		double totalBalanceInAllAccounts = bankAccountDetailList.stream().mapToDouble((o -> o.getClosingBalance())).sum();
 		
 		for (BankAccountDetail bankAccountDetail : bankAccountDetailList)
 		{
-			float percentForAccount = (float) (bankAccountDetail.getClosingBalance()*100)/totalBalanceInAllAccounts;
+			double percentForAccount = (float) (bankAccountDetail.getClosingBalance()*100)/totalBalanceInAllAccounts;
 			bankAccountDetail.setPercentShare(percentForAccount);
 		}
 		

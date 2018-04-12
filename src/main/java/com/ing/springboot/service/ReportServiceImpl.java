@@ -20,7 +20,7 @@ import com.ing.springboot.util.SwiftParserUtil;
 public class ReportServiceImpl implements ReportService
 {
 	public static final Logger logger = LoggerFactory.getLogger(ReportService.class);
-	private static List<BankAccountDetail> bankAccountDetailList;
+
 	@Autowired
 	SwiftParserUtil swiftParserUtil;
 	
@@ -33,7 +33,7 @@ public class ReportServiceImpl implements ReportService
 	//@Override
 	public List<BankAccountDetail> getAllAccountPercentShare()
 	{
-		//List<BankAccountDetail> bankAccountDetailList = new ArrayList<>();
+		List<BankAccountDetail> bankAccountDetailList = new ArrayList<>();
 		
 		String[] bankIds = {"b1", "b2", "b3"};
 		for (String bankid : bankIds)
@@ -53,7 +53,7 @@ public class ReportServiceImpl implements ReportService
 			//b.setAccountNumber(mt940Object.);
 			b.setBankName(bankid);
 			if(mt940Object != null && !StringUtils.isBlank(mt940Object.getClosingAmount()))
-				b.setClosingBalance(Long.parseLong(mt940Object.getClosingAmount()));
+				b.setClosingBalance(Double.parseDouble(mt940Object.getClosingAmount().replace(",", ".")));
 			bankAccountDetailList.add(b);
 		}
 		bankAccountDetailList = ReportUtils.calculatePercentShare(bankAccountDetailList);
