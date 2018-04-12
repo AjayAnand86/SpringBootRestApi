@@ -1,17 +1,28 @@
 package com.ing.springboot.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ing.springboot.handler.BankHandler;
 import com.ing.springboot.model.BankAccountDetail;
+import com.ing.springboot.model.MT940ParsedObject;
 import com.ing.springboot.util.ReportUtils;
+import com.ing.springboot.util.SwiftParserUtil;
 
 @Service("reportService")
 public class ReportServiceImpl implements ReportService
 {
+	public static final Logger logger = LoggerFactory.getLogger(ReportService.class);
 	private static List<BankAccountDetail> bankAccountDetailList;
+	@Autowired
+	SwiftParserUtil swiftParserUtil;
 	
 	/*static
 	{
@@ -30,12 +41,19 @@ public class ReportServiceImpl implements ReportService
 			//CALL REST SERVICE TO GET MT940 MESSAGES FOR BANKS
 			String mt940 = BankHandler.getDataForBank(bankid);
 			//PARSE RECEIVED DATA
-			MT940ParsedObject mt940Object = SwiftParserUtil.createMT940Object(mt940);
+			MT940ParsedObject mt940Object = null;
+			try
+			{
+				mt940Object = swiftParserUtil.createMT940Object(mt940);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
 			BankAccountDetail b = new BankAccountDetail();
 			//b.setAccountNumber(mt940Object.);
 			b.setBankName(bankid);
-			b.setClosingBalance(Long.parseLong(mt940Object.getClosingAmount()));
+			if(mt940Object != null && !StringUtils.isBlank(mt940Object.getClosingAmount()))
+				b.setClosingBalance(Long.parseLong(mt940Object.getClosingAmount()));
 			bankAccountDetailList.add(b);
 		}
 		bankAccountDetailList = ReportUtils.calculatePercentShare(bankAccountDetailList);

@@ -1,7 +1,10 @@
 package com.ing.springboot.handler;
+
+import org.springframework.web.client.RestTemplate;
+
 public class BankHandler
 {
-	private static String getDataForBank(String bankid)
+	public static String getDataForBank(String bankid)
 	{
 	    final String uri = "http://localhost:8080/api/swift/v1/" + bankid;
 	     
