@@ -1,5 +1,4 @@
 package com.ing.springboot.util;
-import java.math.BigDecimal;
 import java.util.List;
 
 import com.ing.springboot.model.BankAccountDetail;

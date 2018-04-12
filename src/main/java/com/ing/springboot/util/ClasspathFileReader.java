@@ -2,7 +2,6 @@ package com.ing.springboot.util;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -15,12 +14,9 @@ import java.net.URL;
  */
 public class ClasspathFileReader {
  
-    private static final String CONFIG_FILE = "/example.xml";
-    
     public static String readFileFromClasspath(String bankId) throws IOException
     {
         URL fileUrl = ClasspathFileReader.class.getResource(bankId+".mt940.txt");
-        //System.out.println("url="+fileUrl.getPath());
         File file = new File(fileUrl.getFile());
         FileReader fr = new FileReader(file);
         BufferedReader br  = new BufferedReader(fr);

@@ -21,7 +21,7 @@ import com.ing.springboot.service.SwiftService;
 public class SwiftController {
 	
 
-	public static final Logger logger = LoggerFactory.getLogger(ReportsController.class);
+	public static final Logger logger = LoggerFactory.getLogger(SwiftController.class);
 
 	@Autowired
 	ReportService reportService;
