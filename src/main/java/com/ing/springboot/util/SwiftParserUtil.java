@@ -29,36 +29,18 @@ import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
 public class SwiftParserUtil {
 	
 	@Autowired
-	MT940ParsedObject mt940ParsedObject;
+	MT940ParsedObject mt940ParsedObject = new MT940ParsedObject();
 
-//public static void main(String[] args) throws IOException {
-//	
-//		
-//        /*
-//         * The message we'll parse as a plain string for simplicity
-//         */
-//        String mtString  = "{1:F01AAAABB99BSMK3513951576}"+
-//                "{2:O9400934081223BBBBAA33XXXX03592332770812230834N}" +
-//                "{4:\n"+
-//                ":20:0112230000000890\n"+      											//transaction reference number
-//                ":25:SAKG800030155USD\n"+   											//Account identification
-//                ":28C:255/1\n"+															//Statement number , sequence number
-//                ":60F:C011223USD175768,92\n"+											//opening balance credit/debit, date, amount
-//                ":61:0112201223CD110,92SALANONREF//08 IL053309/GB/2542049/SHS/312,\n"+  //details of transaction, value date
-//                																		//Credit/debit/fundscode/amount/
-//                
-//                ":62F:C011021USD175879,84\n"+											//closing balance details
-//                ":20:NONREF\n" +
-//                ":25:4001400010\n" +
-//                ":28C:58/1\n" +
-//                ":60F:C140327EUR6308,75\n" +
-//                ":61:1403270327C3519,76FORX50RS201403240008//2014032100037666ABC DO BRASIL LTDA\n" +
-//                ":86:INVOICE NR. 6000012801 \n" +
-//                "ORDPRTY : ABC DO BRASIL LTDA RUA LIBERO BADARO,293-SAO \n" +
-//                "PAULO BRAZIL }";
-//        // 61 and 86 will repeat for n transactions
-//		createMT940Object(mtString);
-//		}
+/*public static void main(String[] args) throws IOException {
+	
+		
+        
+        // * The message we'll parse as a plain string for simplicity
+         
+        String mtString  = "{1:F01AAAABB99BSMK3513951576}{2:O9400934081223BBBBAA33XXXX03592332770812230834N}{4:\n:20:0112230000000890\n:25:SAKG800030155USD\n:28C:255/1\n:60F:C011223USD175768,92\n:61:0112201223CD110,92SALANONREF//08 IL053309/GB/2542049/SHS/312,\n:62F:C011021USD175879,84\n:20:NONREF\n:25:4001400010\n:28C:58/1\n:60F:C140327EUR6308,75\n:61:1403270327C3519,76FORX50RS201403240008//2014032100037666ABC DO BRASIL LTDA\n:86:INVOICE NR. 6000012801 \nORDPRTY : ABC DO BRASIL LTDA RUA LIBERO BADARO,293-SAO \nPAULO BRAZIL }";
+        // 61 and 86 will repeat for n transactions
+		createMT940Object(mtString);
+		}*/
 
 public MT940ParsedObject createMT940Object(String mtString) throws IOException {
 	

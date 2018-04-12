@@ -17,9 +17,9 @@ public class ClasspathFileReader {
  
     private static final String CONFIG_FILE = "/example.xml";
     
-    public String readFileFromClasspath(String bankId) throws IOException
+    public static String readFileFromClasspath(String bankId) throws IOException
     {
-        URL fileUrl = getClass().getResource(bankId+".mt940.txt");
+        URL fileUrl = ClasspathFileReader.class.getResource(bankId+".mt940.txt");
         //System.out.println("url="+fileUrl.getPath());
         File file = new File(fileUrl.getFile());
         FileReader fr = new FileReader(file);
