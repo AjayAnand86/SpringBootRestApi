@@ -52,9 +52,17 @@ public class SwiftController {
 	}
 	
 	@RequestMapping(value = "/bankBalanceShare", method = RequestMethod.GET)
-	public ResponseEntity<List<BankAccountDetail>> listAllBankAccountDetails()
+	public ResponseEntity<List<BankAccountDetail>> getAllAccountPercentShare()
 	{
 		List<BankAccountDetail> bankAccountDetail = reportService.getAllAccountPercentShare();
 		return new ResponseEntity<List<BankAccountDetail>>(bankAccountDetail, HttpStatus.OK);
+	}
+
+	
+	@RequestMapping(value = "/bankAccountTrancationDetails/{bankId}", method = RequestMethod.GET)
+	public ResponseEntity<BankAccountDetail> bankAccountTrancationDetails(@PathVariable("bankId") String bankId)
+	{
+		BankAccountDetail bankAccountDetail = reportService.bankAccountTrancationDetails(bankId);
+		return new ResponseEntity<BankAccountDetail>(bankAccountDetail, HttpStatus.OK);
 	}
 }

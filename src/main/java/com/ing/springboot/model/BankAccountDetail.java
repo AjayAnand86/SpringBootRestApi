@@ -1,5 +1,7 @@
 package com.ing.springboot.model;
 
+import java.util.List;
+
 public class BankAccountDetail
 {
 
@@ -7,7 +9,15 @@ public class BankAccountDetail
 	private String bankName;
 	private double closingBalance;
 	private double percentShare;
+	private List<TransactionDetails> transactionDetails;
 	
+	
+	public List<TransactionDetails> getTransactionDetails() {
+		return transactionDetails;
+	}
+	public void setTransactionDetails(List<TransactionDetails> transactionDetails) {
+		this.transactionDetails = transactionDetails;
+	}
 	public String getAccountNumber() {
 		return accountNumber;
 	}

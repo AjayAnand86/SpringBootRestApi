@@ -7,4 +7,6 @@ import com.ing.springboot.model.BankAccountDetail;
 public interface ReportService
 {
 	public List<BankAccountDetail> getAllAccountPercentShare();
+
+	public BankAccountDetail bankAccountTrancationDetails(String bankId);
 }
