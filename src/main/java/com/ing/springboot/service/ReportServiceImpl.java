@@ -48,4 +48,10 @@ public class ReportServiceImpl implements ReportService {
 		return bankAccountDetailList;
 	}
 
+	@Override
+	public BankAccountDetail bankAccountTrancationDetails(String bankId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
