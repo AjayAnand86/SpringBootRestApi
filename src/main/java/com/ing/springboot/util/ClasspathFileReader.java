@@ -16,10 +16,10 @@ public class ClasspathFileReader {
  
     public static String readFileFromClasspath(String bankId) throws IOException
     {
-        URL fileUrl = ClasspathFileReader.class.getResource(bankId+".mt940.txt");
-        File file = new File(fileUrl.getFile());
+       // URL fileUrl = ClasspathFileReader.class.getResource(bankId+".mt940.txt");
+       // File file = new File(fileUrl.getFile());
     	
-    	//File file = new File("E:\\Java\\inghackathon\\src\\main\\java\\com\\ing\\springboot\\util\\"+bankId+".mt940.txt");
+    	File file = new File("E:\\Java\\inghackathon\\src\\main\\java\\com\\ing\\springboot\\util\\"+bankId+".mt940.txt");
         FileReader fr = new FileReader(file);
         BufferedReader br  = new BufferedReader(fr);
         String line = null;
